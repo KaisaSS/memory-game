@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import SingleCard from "./SingleCard";
 
 const cardImages = [
-  { src: "/img/card1.jpg" },
-  { src: "/img/card2.jpg" },
-  { src: "/img/card3.jpg" },
-  { src: "/img/card4.jpg" },
-  { src: "/img/card5.jpg" },
-  { src: "/img/card6.jpg" },
+  { src: "/img/card1.jpg", matched: false },
+  { src: "/img/card2.jpg", matched: false },
+  { src: "/img/card3.jpg", matched: false },
+  { src: "/img/card4.jpg", matched: false },
+  { src: "/img/card5.jpg", matched: false },
+  { src: "/img/card6.jpg", matched: false },
 ];
 
 const Cards = () => {
@@ -35,14 +35,23 @@ const Cards = () => {
   useEffect(() => {
     if (firstChoice && secondChoice) {
       if (firstChoice.src === secondChoice.src) {
-        console.log("match!");
+        setCards((prevCards) => {
+          return prevCards.map((card) => {
+            if (card.src === firstChoice.src) {
+              return { ...card, matched: true };
+            } else {
+              return card;
+            }
+          });
+        });
         resetTurn();
       } else {
-        console.log("no match...");
         resetTurn();
       }
     }
   }, [firstChoice, secondChoice]);
+
+  console.log(cards);
 
   // Reset choices and increase turns
   const resetTurn = () => {
