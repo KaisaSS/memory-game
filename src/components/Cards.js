@@ -46,12 +46,10 @@ const Cards = () => {
         });
         resetTurn();
       } else {
-        resetTurn();
+        setTimeout(() => resetTurn(), 1000);
       }
     }
   }, [firstChoice, secondChoice]);
-
-  console.log(cards);
 
   // Reset choices and increase turns
   const resetTurn = () => {
@@ -65,7 +63,12 @@ const Cards = () => {
       <button onClick={shuffleCards}>New Game</button>
       <div className="card-grid">
         {cards.map((card) => (
-          <SingleCard key={card.id} card={card} handleChoice={handleChoice} />
+          <SingleCard
+            key={card.id}
+            card={card}
+            handleChoice={handleChoice}
+            flipped={card === firstChoice || card === secondChoice || card.matched}
+          />
         ))}
       </div>
     </div>
