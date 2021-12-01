@@ -23,6 +23,8 @@ const Cards = () => {
       .sort(() => Math.random() - 0.5)
       .map((card) => ({ ...card, id: Math.random() }));
 
+    setFirstChoice(null);
+    setSecondChoice(null);
     setCards(shuffledCards);
     setTurns(0);
   };
@@ -61,6 +63,11 @@ const Cards = () => {
     setDisabled(false);
   };
 
+  // Start a new game automatically
+  useEffect(() => {
+    shuffleCards();
+  }, []);
+
   return (
     <div>
       <button onClick={shuffleCards}>New Game</button>
@@ -75,6 +82,7 @@ const Cards = () => {
           />
         ))}
       </div>
+      <p>Turns: {turns}</p>
     </div>
   );
 };
