@@ -1,4 +1,5 @@
 import { useState } from "react";
+import SingleCard from "./SingleCard";
 
 const cardImages = [
   { src: "/img/card1.jpg" },
@@ -30,12 +31,7 @@ const Cards = () => {
       <button onClick={shuffleCards}>New Game</button>
       <div className="card-grid">
         {cards.map((card) => (
-          <div className="card" key={card.id}>
-            <div>
-              <img className="front" src={card.src} alt="card front" />
-              <img className="back" src="/img/cover.jpg" alt="card back" />
-            </div>
-          </div>
+          <SingleCard key={card.id} card={card} />
         ))}
       </div>
     </div>
