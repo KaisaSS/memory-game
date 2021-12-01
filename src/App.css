@@ -17,3 +17,15 @@ button {
 button:hover {
   background: #c2386d;
 }
+
+.card-grid {
+  margin: 40px 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-gap: 20px;
+}
+
+.front,
+.back {
+  max-width: 180px;
+}

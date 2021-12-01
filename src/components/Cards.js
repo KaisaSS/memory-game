@@ -25,7 +25,21 @@ const Cards = () => {
 
   console.log(cards, turns);
 
-  return <button onClick={shuffleCards}>New Game</button>;
+  return (
+    <div>
+      <button onClick={shuffleCards}>New Game</button>
+      <div className="card-grid">
+        {cards.map((card) => (
+          <div className="card" key={card.id}>
+            <div>
+              <img className="front" src={card.src} alt="card front" />
+              <img className="back" src="/img/cover.jpg" alt="card back" />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default Cards;
